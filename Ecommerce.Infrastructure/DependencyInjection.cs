@@ -1,5 +1,8 @@
 ﻿using Ecommerce.Core.RepositoryContracts;
+using Ecommerce.Core.ServiceContracts;
+using Ecommerce.Infrastructure.DbContext;
 using Ecommerce.Infrastructure.Repositories;
+using Ecommerce.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
  
 
@@ -18,7 +21,12 @@ namespace Ecommerce.Infrastructure
             // Register your infrastructure services here
             // Example: services.AddSingleton<IMyService, MyService>();
 
-            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<DapperDbContext>();
+
+            // Add this line to register TokenService
+            services.AddScoped<ITokenService, TokenService>();
+
             return services;
         }
     }

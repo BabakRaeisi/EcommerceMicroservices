@@ -1,4 +1,6 @@
-﻿ 
+﻿
+using System.ComponentModel;
+
 namespace Ecommerce.Core.DTO;
  
     public record AuthenticationResponse(
@@ -7,6 +9,13 @@ namespace Ecommerce.Core.DTO;
         string? Password,
         string? PersonName,
         string? Token,
-        bool IsSuccessful
-        );
- 
+        bool IsSuccessful)
+        {
+    //parameterless cosnstructor for automapping 
+    public AuthenticationResponse() : this(Guid.Empty, null, null, null, null, false) { }
+    }
+
+
+
+
+

@@ -1,5 +1,8 @@
-﻿using Ecommerce.Core.ServiceContracts;
+﻿using Ecommerce.Core.DTO;
+using Ecommerce.Core.ServiceContracts;
 using Ecommerce.Core.Services;
+using Ecommerce.Core.Validators;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
  
 
@@ -17,7 +20,11 @@ namespace Ecommerce.Core
         {
             // Register your infrastructure services here
             // Example: services.AddSingleton<IMyService, MyService>();
-            services.AddTransient<IUserService, UserService>();
+             services.AddTransient<IUserService, UserService>();
+             services.AddValidatorsFromAssemblyContaining<LoginRequestValidator>();
+             services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
+           
+
             return services;
         }
     }
